@@ -32,8 +32,7 @@ https://leetcode-cn.com/problems/add-two-numbers/
   原因：342 + 465 = 807
 
 #### 解题思路
-TODO
-
+简单的链表操作
 
 ### Problem 15: 三数之和
 https://leetcode-cn.com/problems/3sum/
