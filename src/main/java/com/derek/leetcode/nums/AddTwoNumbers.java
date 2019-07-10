@@ -1,7 +1,5 @@
 package com.derek.leetcode.nums;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * Problem 2: 两数相加
  * <p>
@@ -31,7 +29,19 @@ public class AddTwoNumbers {
         long startTime = System.currentTimeMillis();
         ListNode res = solution.addTwoNumbers(l1, l2);
         long cost = System.currentTimeMillis() - startTime;
-        System.out.println(String.format("cost: %8d, res: %s", cost, JSON.toJSONString(res)));
+        System.out.println(String.format("cost: %8d, res: %s", cost, listNodeToString(res)));
+    }
+
+    private static String listNodeToString(ListNode listNode) {
+        StringBuilder sb = new StringBuilder();
+        while (listNode != null) {
+            sb.append(listNode.val);
+            listNode = listNode.next;
+            if (listNode != null) {
+                sb.append("->");
+            }
+        }
+        return sb.toString();
     }
 
     private static ListNode createListNode(int... arr) {
@@ -49,9 +59,43 @@ public class AddTwoNumbers {
 
     static class Solution {
 
+        /**
+         * Run结果
+         * 提交结果：AC
+         * 执行用时：7ms
+         * 内存消耗：44.7MB
+         * 
+         * @param l1
+         * @param l2
+         * @return
+         */
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            // TODO
-            return null;
+            ListNode head = null;
+            ListNode curNode = null;
+            // 进位
+            int carry = 0;
+            while (l1 != null || l2 != null) {
+                int value1 = l1 == null ? 0 : l1.val;
+                int value2 = l2 == null ? 0 : l2.val;
+                int sum = value1 + value2 + carry;
+                carry = sum / 10;
+                int val = sum % 10;
+
+                ListNode newL = new ListNode(val);
+                if (curNode == null) {
+                    curNode = newL;
+                } else {
+                    curNode.next = newL;
+                    curNode = curNode.next;
+                }
+                head = head == null ? curNode : head;
+                l1 = l1 == null ? null : l1.next;
+                l2 = l2 == null ? null : l2.next;
+            }
+            if (carry > 0) {
+                curNode.next = new ListNode(carry);
+            }
+            return head;
         }
     }
 
