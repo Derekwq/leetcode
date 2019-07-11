@@ -33,7 +33,9 @@ https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 
 ### 解题思路
 
-TODO
+借助了一个Map用来记录已遍历过的字符下标。
+
+
 
 
 

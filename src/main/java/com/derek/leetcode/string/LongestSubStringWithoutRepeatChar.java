@@ -1,5 +1,8 @@
 package com.derek.leetcode.string;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Problem 3: 无重复字符的最长子串
  * https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
@@ -34,6 +37,7 @@ public class LongestSubStringWithoutRepeatChar {
         print(solution, "abcabcbb");
         print(solution, "bbbbb");
         print(solution, "pwwkew");
+        print(solution, "abba");
     }
 
     private static void print(Solution solution, String str) {
@@ -46,9 +50,31 @@ public class LongestSubStringWithoutRepeatChar {
 
     static class Solution {
 
-        public int lengthOfLongestSubstring(String s) {
-            // TODO
-            return 0;
+        /**
+         * 提交结果：AC
+         * 执行用时：28ms
+         * 内存消耗：39.6MB
+         * 
+         * @param str
+         * @return
+         */
+        public int lengthOfLongestSubstring(String str) {
+            if (str == null || str.length() == 0) {
+                return 0;
+            }
+            Map<Character, Integer> map = new HashMap<>();
+            int startIndex = 0;
+            int maxLen = 0;
+            for (int curIndex = 0; curIndex < str.length(); curIndex++) {
+                Character curCharacter = str.charAt(curIndex);
+                if (map.containsKey(curCharacter)) {
+                    // abba, 遍历到第四个a时，如果 已存在a的下标+1 仍小于 startIndex，则不用重置startIndex
+                    startIndex = Math.max(startIndex, map.get(str.charAt(curIndex)) + 1);
+                }
+                map.put(curCharacter, curIndex);
+                maxLen = Math.max(maxLen, curIndex - startIndex + 1);
+            }
+            return maxLen;
         }
     }
 }
