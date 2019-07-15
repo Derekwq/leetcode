@@ -52,6 +52,8 @@ public class MedianOfTwoSortedArrays {
          * 内存消耗：53MB
          * 数学推导过程：https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-shu-b/
          * https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-2/
+         *
+         * 时间复杂度：o(log(min(m, n)))
          * 
          * @param nums1
          * @param nums2
