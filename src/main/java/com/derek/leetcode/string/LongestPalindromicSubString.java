@@ -115,5 +115,17 @@ public class LongestPalindromicSubString {
             // (right - 1) - (left + 1) + 1 = right - left - 1
             return right - left - 1;
         }
+
+        /**
+         * Manacher算法（专门用于解决"最长回文子串"问题的算子，时间复杂度：o(n)）
+         * https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/
+         * 
+         * @param s input str
+         * @return longest palindrome sub str
+         */
+        private String manacher(String s) {
+            // TODO
+            return null;
+        }
     }
 }
