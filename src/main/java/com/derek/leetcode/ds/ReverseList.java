@@ -1,5 +1,7 @@
 package com.derek.leetcode.ds;
 
+import com.derek.leetcode.ListNode;
+
 /**
  * Problem 206: 反转链表
  * <p>
@@ -61,25 +63,4 @@ public class ReverseList {
         return new ListNode(node.val);
     }
 
-    public static class ListNode {
-
-        int      val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        public static ListNode build(int[] arr) {
-            ListNode l = new ListNode(arr[0]);
-            ListNode p = l;
-            if (arr.length > 1) {
-                for (int i = 1; i < arr.length; i++) {
-                    p.next = new ListNode(arr[i]);
-                    p = p.next;
-                }
-            }
-            return l;
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.derek.leetcode.ds;
+package com.derek.leetcode;
 
 /**
  * @author derek.wu
@@ -7,11 +7,11 @@ package com.derek.leetcode.ds;
  */
 public class TreeNode {
 
-    int      val;
-    TreeNode left;
-    TreeNode right;
+    public int      val;
+    public TreeNode left;
+    public TreeNode right;
 
-    TreeNode(int x) {
+    public TreeNode(int x) {
         val = x;
     }
 

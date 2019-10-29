@@ -1,5 +1,7 @@
 package com.derek.leetcode.ds;
 
+import com.derek.leetcode.TreeNode;
+
 /**
  * Problem 226: 翻转二叉树
  * https://leetcode-cn.com/problems/invert-binary-tree/

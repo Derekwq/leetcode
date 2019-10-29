@@ -1,5 +1,7 @@
 package com.derek.leetcode.nums;
 
+import com.derek.leetcode.ListNode;
+
 /**
  * Problem 2: 两数相加
  * <p>
@@ -99,13 +101,4 @@ public class AddTwoNumbers {
         }
     }
 
-    static class ListNode {
-
-        int      val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }

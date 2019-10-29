@@ -1,5 +1,7 @@
 package com.derek.leetcode.ds;
 
+import com.derek.leetcode.TreeNode;
+
 /**
  * Problem: 222. 完全二叉树的节点个数
  * https://leetcode-cn.com/problems/count-complete-tree-nodes/
