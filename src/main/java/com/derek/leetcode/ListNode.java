@@ -25,4 +25,16 @@ public class ListNode {
         }
         return l;
     }
+
+    public static String listNodeToString(ListNode listNode) {
+        StringBuilder sb = new StringBuilder();
+        while (listNode != null) {
+            sb.append(listNode.val);
+            listNode = listNode.next;
+            if (listNode != null) {
+                sb.append("->");
+            }
+        }
+        return sb.toString();
+    }
 }
