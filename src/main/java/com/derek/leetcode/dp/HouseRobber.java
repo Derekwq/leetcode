@@ -13,17 +13,29 @@ import com.derek.leetcode.Tool;
 public class HouseRobber extends Tool {
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
-        exec(solution, new int[] { 1, 2, 3, 1 });
-        exec(solution, new int[] { 2, 7, 9, 3, 1 });
+        System.out.println("method1: ");
+        Solution s1 = new Solution1();
+        exec(s1, new int[] { 1, 2, 3, 1 });
+        exec(s1, new int[] { 2, 7, 9, 3, 1 });
+
+        System.out.println("method2: ");
+        Solution s2 = new Solution2();
+        exec(s2, new int[] { 1, 2, 3, 1 });
+        exec(s2, new int[] { 2, 7, 9, 3, 1 });
     }
 
     private static void exec(Solution solution, int[] nums) {
         System.out.println(printArr(nums) + " ==> " + solution.rob(nums));
     }
 
-    static class Solution {
+    interface Solution {
 
+        int rob(int[] nums);
+    }
+
+    static class Solution1 implements Solution {
+
+        @Override
         public int rob(int[] nums) {
             if (nums == null || nums.length == 0) {
                 return 0;
@@ -44,4 +56,22 @@ public class HouseRobber extends Tool {
         }
     }
 
+    static class Solution2 implements Solution {
+
+        @Override
+        public int rob(int[] nums) {
+            if (nums == null || nums.length == 0) {
+                return 0;
+            }
+
+            int preMax = nums[0];
+            int curMax = preMax;
+            for (int i = 1; i < nums.length; i++) {
+                int tmp = curMax;
+                curMax = Math.max(curMax, preMax + nums[i]);
+                preMax = tmp;
+            }
+            return curMax;
+        }
+    }
 }
