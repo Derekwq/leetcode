@@ -24,48 +24,51 @@ public class ReverseNodesInKGroup {
         System.out.println(String.format("l: %s\nrs: %s\n\n", ListNode.listNodeToString(l),
                                          ListNode.listNodeToString(rs)));
     }
-}
 
-class Solution {
+    static class Solution {
 
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
+        public ListNode reverseKGroup(ListNode head, int k) {
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
 
-        // 已翻转区域的终点
-        ListNode pre = dummy;
-        // 待翻转区域的终点
-        ListNode end = dummy;
-        while (end.next != null) {
-            for (int i = 0; i < k && end != null; i++) {
-                end = end.next;
+            // 已翻转区域的终点
+            ListNode pre = dummy;
+            // 待翻转区域的终点
+            ListNode end = dummy;
+            while (end.next != null) {
+                for (int i = 0; i < k && end != null; i++) {
+                    end = end.next;
+                }
+                if (end == null) {
+                    break;
+                }
+                // 未翻转区域的起点
+                ListNode next = end.next;
+                // 待翻转区域的起点
+                ListNode start = pre.next;
+                end.next = null;
+
+                pre.next = reverse(start);
+                start.next = next;
+                pre = start;
+                end = pre;
             }
-            if (end == null) {
-                break;
+            return dummy.next;
+        }
+
+        /**
+         * 反转链表【经典】
+         */
+        private ListNode reverse(ListNode head) {
+            ListNode pre = null;
+            ListNode p = head;
+            while (p != null) {
+                ListNode next = p.next;
+                p.next = pre;
+                pre = p;
+                p = next;
             }
-            // 未翻转区域的起点
-            ListNode next = end.next;
-            // 待翻转区域的起点
-            ListNode start = pre.next;
-            end.next = null;
-
-            pre.next = reverse(start);
-            start.next = next;
-            pre = start;
-            end = pre;
+            return pre;
         }
-        return dummy.next;
-    }
-
-    private ListNode reverse(ListNode head) {
-        ListNode pre = null;
-        ListNode p = head;
-        while (p != null) {
-            ListNode next = p.next;
-            p.next = pre;
-            pre = p;
-            p = next;
-        }
-        return pre;
     }
 }
