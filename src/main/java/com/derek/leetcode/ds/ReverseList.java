@@ -22,10 +22,21 @@ public class ReverseList {
 
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 4, 5 };
+//        ListNode l = ListNode.build(arr);
+//        ListNode rl = new ReverseList().reverseList(l);
+//        System.out.println(list2Str(l));
+//        System.out.println(list2Str(rl));
+//
+//
+        Solution2 solution = new Solution2();
+        exec(solution, new int[] { 1, 2, 3, 4, 5 });
+    }
+
+    private static void exec(Solution2 solution, int[] arr) {
         ListNode l = ListNode.build(arr);
-        ListNode rl = new ReverseList().reverseList(l);
-        System.out.println(list2Str(l));
-        System.out.println(list2Str(rl));
+        ListNode rs = solution.reverseList(l);
+        System.out.println(String.format("l: %s\nrs: %s\n\n", ListNode.listNodeToString(l),
+                                         ListNode.listNodeToString(rs)));
     }
 
     public static String list2Str(ListNode listNode) {
@@ -61,6 +72,20 @@ public class ReverseList {
 
     private ListNode copyNodeVal(ListNode node) {
         return new ListNode(node.val);
+    }
+
+}
+
+class Solution2 {
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode rHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return rHead;
     }
 
 }
