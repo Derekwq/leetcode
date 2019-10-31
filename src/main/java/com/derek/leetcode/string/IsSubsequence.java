@@ -1,4 +1,4 @@
-package com.derek.leetcode.dp;
+package com.derek.leetcode.string;
 
 /**
  * 392. 判断子序列
