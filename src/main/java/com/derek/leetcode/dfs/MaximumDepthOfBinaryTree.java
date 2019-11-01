@@ -11,14 +11,14 @@ import com.derek.leetcode.TreeNode;
  * @since v1.0.0
  */
 public class MaximumDepthOfBinaryTree {
-}
 
-class Solution {
+    static class Solution {
 
-    public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
+        public int maxDepth(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
         }
-        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 }
