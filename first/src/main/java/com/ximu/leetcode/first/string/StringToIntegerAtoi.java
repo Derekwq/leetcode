@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Problem 8
+ * https://leetcode-cn.com/problems/string-to-integer-atoi/
+ * 
  * @author derek.wu
  * @date 2020-04-03
  * @since v1.0.0
@@ -21,42 +24,41 @@ public class StringToIntegerAtoi {
         System.out.println(solution.myAtoi("0-1"));
     }
 
-}
+    static class Solution {
 
-class Solution {
+        public int myAtoi(String str) {
+            if (str == null || str.length() == 0) {
+                return 0;
+            }
+            str = str.trim();
+            boolean isNegative = false;
+            boolean firstNoneNum = false;
+            List<Integer> queue = new ArrayList<>();
+            for (int i = 0; i < str.length(); i++) {
+                char c = str.charAt(i);
+                if (!firstNoneNum && queue.size() < 1 && (c == '-' || c == '+')) {
+                    isNegative = c == '-';
+                    firstNoneNum = true;
+                    continue;
+                }
 
-    public int myAtoi(String str) {
-        if (str == null || str.length() == 0) {
-            return 0;
-        }
-        str = str.trim();
-        boolean isNegative = false;
-        boolean firstNoneNum = false;
-        List<Integer> queue = new ArrayList<>();
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (!firstNoneNum && queue.size() < 1 && (c == '-' || c == '+')) {
-                isNegative = c == '-';
-                firstNoneNum = true;
-                continue;
+                if (c >= '0' && c <= '9') {
+                    queue.add(c - '0');
+                } else {
+                    break;
+                }
             }
-
-            if (c >= '0' && c <= '9') {
-                queue.add(c - '0');
-            } else {
-                break;
+            if (queue.size() < 1) {
+                return 0;
             }
-        }
-        if (queue.size() < 1) {
-            return 0;
-        }
-        int num = 0;
-        for (int i = 0; i < queue.size(); i++) {
-            if ((Integer.MAX_VALUE - queue.get(i)) / 10 < num) {
-                return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            int num = 0;
+            for (int i = 0; i < queue.size(); i++) {
+                if ((Integer.MAX_VALUE - queue.get(i)) / 10 < num) {
+                    return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                }
+                num = num * 10 + queue.get(i);
             }
-            num = num * 10 + queue.get(i);
+            return isNegative ? -num : num;
         }
-        return isNegative ? -num : num;
     }
 }
